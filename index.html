@@ -326,44 +326,110 @@
             z-index: 5;
         }
 
-.hof-section {
+        /* --- Updated Hall of Fame Styles --- */
+        .hof-section {
             margin-top: 60px;
             margin-bottom: 40px;
-            background: #0a0a0a;
-            border: 1px solid #1a1a1a;
-            border-radius: 12px;
-            padding: 50px 20px;
-            text-align: center;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
         .hof-section h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
             color: #eab308;
             font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .hof-section p {
-            color: #aaa;
-            font-size: 1rem;
+            color: #ddd;
+            font-size: 0.95rem;
             line-height: 1.5;
-            margin-bottom: 25px;
+            margin-bottom: 5px;
         }
 
-        .hof-section strong {
-            color: #fff;
+        .hof-subtext {
+            color: #888 !important;
+            font-size: 0.8rem !important;
+            margin-bottom: 30px !important;
         }
 
-        .hof-list {
+        .hof-table-container {
+            width: 100%;
+            max-width: 1100px;
+            overflow-x: auto;
+            background: #0d0d0d;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+        }
+
+        .hof-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 750px;
+        }
+
+        .hof-table th {
+            padding: 16px 20px;
+            font-size: 0.7rem;
+            color: #888;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #222;
+            background: #111;
+        }
+
+        .hof-table td {
+            padding: 14px 20px;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #161616;
+            vertical-align: middle;
+            color: #eee;
+            font-weight: 700;
+        }
+
+        .hof-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .hof-table tbody tr:hover {
+            background: #131313;
+        }
+
+        .hof-year {
+            border: 1px solid #ca8a04;
+            color: #eab308;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background: rgba(202, 138, 4, 0.05);
+            display: inline-block;
+        }
+
+        .hof-players {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            font-size: 1.2rem;
-            color: #ccc;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .hof-players .player {
+            margin: 0;
+            padding: 5px 10px;
+            font-size: 0.7rem;
+        }
+
+        .active-status {
+            color: #4ade80;
+            font-weight: 700;
+        }
+
+        .inactive-status {
+            color: #888;
         }
 
         .back-to-top {
@@ -543,21 +609,102 @@
         </div>
     </div>
 
-<div id="hall-of-fame" class="hof-section tier-row">
+    <div id="hall-of-fame" class="hof-section tier-row">
         <h2>Hall of Fame</h2>
-        <p>Contact <strong>@omriex.lol</strong> to be added here.</p>
-        <div class="hof-list">
-            <div>1. <strong>vercetti</strong></div>
-            <div>2. <strong>LND Abi</strong></div>
-            <div>3. <strong>steady</strong></div>
-            <div>4. <strong>Dark</strong></div>
-            <div>5. <strong>ashoky</strong></div>
-            <div>6. <strong>wag</strong></div>
-            <div>7. <strong>nemoys</strong></div>
-            <div>8. <strong>Samurai</strong></div>
-            <div>9. <strong>rzux</strong></div>
-            <div>10. <strong>ravinchi</strong></div>
-            <div>11. <strong>Emirhan</strong></div>
+        <p>Former World Tournament Champions. The legends who once held the crown.</p>
+        <p class="hof-subtext">(Please do not hesitate to contact us if you want to share your tournament results here.)</p>
+        
+        <div class="hof-table-container">
+            <table class="hof-table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Server</th>
+                        <th>Player</th>
+                        <th>Tournament Region</th>
+                        <th>Last Active</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="hof-year">2018</span></td>
+                        <td>Europe</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">LND Abi</span></div></div></td>
+                        <td>EU</td>
+                        <td class="active-status">active</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2021</span></td>
+                        <td>London</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">wag</span></div></div></td>
+                        <td>EU</td>
+                        <td class="inactive-status">2025</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2022</span></td>
+                        <td>Frankfurt</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">nemoys</span></div></div></td>
+                        <td>GLOBAL</td>
+                        <td class="inactive-status">2024</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2023</span></td>
+                        <td>EU vs. NA</td>
+                        <td>
+                            <div class="hof-players">
+                                <div class="player"><span class="p-name">LND Abi</span></div>
+                                <div class="player"><span class="p-name">wag</span></div>
+                                <div class="player"><span class="p-name">Samurai</span></div>
+                                <div class="player"><span class="p-name">rzux</span></div>
+                            </div>
+                        </td>
+                        <td>GLOBAL</td>
+                        <td class="inactive-status">-</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2023</span></td>
+                        <td>Europe</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">ravinchi</span></div></div></td>
+                        <td>GLOBAL</td>
+                        <td class="inactive-status">2026</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2024</span></td>
+                        <td>Atlanta</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">vercetti</span></div></div></td>
+                        <td>GLOBAL</td>
+                        <td class="inactive-status">2025</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2024</span></td>
+                        <td>Frankfurt</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">wag</span></div></div></td>
+                        <td>EU</td>
+                        <td class="inactive-status">2025</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2026</span></td>
+                        <td>Frankfurt</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">Emirhan</span></div></div></td>
+                        <td>EU</td>
+                        <td class="active-status">active</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2026</span></td>
+                        <td>New York</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">LND Abi</span></div></div></td>
+                        <td>NA</td>
+                        <td class="active-status">active</td>
+                    </tr>
+                    <tr>
+                        <td><span class="hof-year">2026</span></td>
+                        <td>Stockholm</td>
+                        <td><div class="hof-players"><div class="player"><span class="p-name">LND Abi</span></div></div></td>
+                        <td>RU</td>
+                        <td class="active-status">active</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
