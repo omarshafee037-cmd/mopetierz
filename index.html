@@ -326,7 +326,7 @@
             z-index: 5;
         }
 
-        .hof-section {
+.hof-section {
             margin-top: 60px;
             margin-bottom: 40px;
             background: #0a0a0a;
@@ -334,6 +334,8 @@
             border-radius: 12px;
             padding: 50px 20px;
             text-align: center;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hof-section h2 {
@@ -349,10 +351,19 @@
             color: #aaa;
             font-size: 1rem;
             line-height: 1.5;
+            margin-bottom: 25px;
         }
 
         .hof-section strong {
             color: #fff;
+        }
+
+        .hof-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            font-size: 1.2rem;
+            color: #ccc;
         }
 
         .back-to-top {
@@ -532,11 +543,13 @@
         </div>
     </div>
 
-    <div id="hall-of-fame" class="hof-section tier-row">
+<div id="hall-of-fame" class="hof-section tier-row">
         <h2>Hall of Fame</h2>
-        <p>Contact <strong>@omriex.lol</strong> to be added here.</p><br>
-        1. <strong>vercetti</strong>
-        2. <strong>rainn</strong>
+        <p>Contact <strong>@omriex.lol</strong> to be added here.</p>
+        <div class="hof-list">
+            <div>1. <strong>vercetti</strong></div>
+            <div>2. <strong>rainn</strong></div>
+        </div>
     </div>
 </div>
 
@@ -573,7 +586,6 @@
         }
     }
 
-  // Fetch from the local JSON file
     fetch('./data.json', { cache: "no-cache" })
         .then(response => {
             if (!response.ok) throw new Error("Network response was not ok");
