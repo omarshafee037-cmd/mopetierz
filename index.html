@@ -8,7 +8,7 @@
     <title>Mopetiers Official 2026</title>
     <meta name="description" content="The official Mopetiers player tier list for 2026.">
     <meta property="og:title" content="Mopetiers Official">
-    <meta property="og:description" content="The official Mopetiers 2026 Player Tier List.">
+    <meta property="og:description" content="The official Mopetiers 2026 Player Tier List">
     <meta property="og:image" content="https://images2.imgbox.com/fa/30/fXB0WKMF_o.png">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#eab308">
@@ -558,7 +558,6 @@
 </button>
 
 <script>
-    // 1. Core Functions
     function createPlayerElement(name) {
         return `
             <div class="player">
@@ -587,14 +586,12 @@
         }
     }
 
-    // 2. FETCH DATA FROM OUR JSON "API"
-    fetch('./data.json')
+    fetch('https://mopetierz.omarshafee037.workers.dev/', { cache: "no-store" })
         .then(response => {
             if (!response.ok) throw new Error("Network response was not ok");
-            return response.json(); // Translate the file into Javascript
+            return response.json();
         })
         .then(playersData => {
-            // Data successfully loaded! Now build the tiers.
             renderTier("aaas", playersData.aaas);
             renderTier("s", playersData.s);
             renderTier("a", playersData.a);
@@ -607,7 +604,6 @@
             document.getElementById('tier-aaas').innerHTML = `<p style="color:red; padding:10px;">Error loading player database.</p>`;
         });
 
-    // 3. Search Functionality
     const searchInput = document.getElementById('search-input');
     searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
@@ -625,7 +621,6 @@
         });
     });
 
-    // 4. Export Logic with Loading State
     document.getElementById('export-btn').addEventListener('click', function() {
         const btn = this;
         const originalContent = btn.innerHTML;
@@ -653,7 +648,6 @@
         }, 100); 
     });
 
-    // 5. Mobile Menu & Back to Top Logic
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
@@ -664,7 +658,6 @@
     });
     bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-    // 6. Scroll Animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
