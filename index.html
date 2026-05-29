@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Optimization & Open Graph -->
+    <title>Mopetiers Official 2026</title>
+    <meta name="description" content="The official Mopetiers player tier list for 2026.">
+    <meta property="og:title" content="Mopetiers Official">
+    <meta property="og:description" content="The official Mopetiers 2026 Player Tier List.">
+    <meta property="og:image" content="https://images2.imgbox.com/fa/30/fXB0WKMF_o.png">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#eab308">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://images2.imgbox.com/fa/30/fXB0WKMF_o.png">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* --- Header Styles --- */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid #1a1a1a;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-left {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        /* Nav items container for collapse */
+        .nav-collapsible {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .top-bar-center, .top-bar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* --- Button & Input Styles --- */
+        .btn {
+            background: #111;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+        }
+
+        .btn:hover:not(:disabled) {
+            background: #222;
+            border-color: #555;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .btn-yellow {
+            background: #eab308;
+            color: #000;
+            border-color: #ca8a04;
+        }
+
+        .btn-yellow:hover {
+            background: #facc15;
+            border-color: #eab308;
+        }
+
+        .search-bar {
+            background: #111;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+            width: 250px;
+            transition: border-color 0.2s;
+        }
+
+        .search-bar:focus {
+            border-color: #3b82f6;
+        }
+
+        .discord-btn {
+            background-color: #5865F2;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #5865F2;
+        }
+
+        .discord-btn:hover {
+            background-color: #7983F5;
+            border-color: #7983F5;
+        }
+
+        .discord-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* --- Container & Layout --- */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
+            flex-grow: 1;
+        }
+
+        #tier-container {
+            padding: 20px;
+            border-radius: 12px;
+            background: #050505;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #ec4899, #a855f7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* --- Tier Row & Animations --- */
+        .tier-row {
+            display: flex;
+            margin-bottom: 12px;
+            gap: 12px;
+            min-height: 80px;
+            /* Scroll Animation Defaults */
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .tier-row.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .tier-label {
+            width: 110px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .tier-name {
+            font-size: 1rem;
+            font-weight: 900;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tier-desc {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: capitalize;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .bg-aaas { background: linear-gradient(180deg, #9b5cf6, #7c3aed); }
+        .bg-s { background: linear-gradient(180deg, #ef4444, #dc2626); }
+        .bg-a { background: linear-gradient(180deg, #facc15, #eab308); }
+        .bg-b { background: linear-gradient(180deg, #22c55e, #16a34a); }
+        .bg-c { background: linear-gradient(180deg, #38bdf8, #0ea5e9); }
+        .bg-d { background: linear-gradient(180deg, #60a5fa, #3b82f6); }
+
+        .tier-content {
+            flex-grow: 1;
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: flex-start;
+        }
+
+        .tier-content.divided {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .sub-tier {
+            border: 1px dashed #333;
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: flex-start;
+        }
+
+        .sub-tier-label {
+            width: 100%;
+            font-size: 0.7rem;
+            color: #ccc;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        /* --- Player Styles --- */
+        .player {
+            background-color: #111111;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #ffffff;
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease, opacity 0.3s ease, border-color 0.2s ease;
+        }
+
+        .player:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+            border-color: #555;
+            z-index: 10;
+        }
+
+        .player.dimmed {
+            opacity: 0.15;
+            transform: scale(0.95);
+            box-shadow: none;
+        }
+
+        .player.highlight {
+            border-color: #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+            transform: scale(1.05);
+            z-index: 5;
+        }
+
+        /* --- Hall of Fame --- */
+        .hof-section {
+            margin-top: 60px;
+            margin-bottom: 40px;
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hof-section h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #eab308;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hof-section p {
+            color: #aaa;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .hof-section strong {
+            color: #fff;
+        }
+
+        /* --- Back to Top Button --- */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #eab308;
+            color: #000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(234, 179, 8, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: #facc15;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* --- Utilities --- */
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        body.exporting .tier-content {
+            border: 1px solid transparent !important;
+            background-color: #050505 !important;
+        }
+        body.exporting .sub-tier {
+            border-color: #222 !important;
+        }
+        /* Lock animation state during export so it doesn't break image */
+        body.exporting .tier-row {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .top-bar {
+                padding: 15px;
+            }
+            .top-bar-left {
+                width: 100%;
+            }
+            .hamburger-btn {
+                display: block;
+            }
+            .nav-collapsible {
+                display: none; /* Collapsed by default */
+                flex-direction: column;
+                width: 100%;
+                margin-top: 15px;
+                gap: 15px;
+            }
+            .nav-collapsible.active {
+                display: flex; /* Expanded state */
+            }
+            .top-bar-center, .top-bar-right {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+            }
+            .search-bar {
+                width: 100%;
+            }
+            .btn, .discord-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .tier-content.divided {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="top-bar-left">
+        <a href="#hall-of-fame" class="btn btn-yellow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Hall of Fame
+        </a>
+        <button class="hamburger-btn" id="mobile-menu-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+    </div>
+    
+    <div class="nav-collapsible" id="nav-menu">
+        <div class="top-bar-center">
+            <input type="text" id="search-input" class="search-bar" placeholder="Search players...">
+            <button id="export-btn" class="btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export
+            </button>
+        </div>
+        <div class="top-bar-right">
+            <a href="https://discord.gg/YaGwTBSKbv" target="_blank" class="discord-btn">
+                <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.31,60,73.31,53s5-12.74,11.43-12.74S96.2,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+                </svg>
+                Join Discord
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div id="tier-container">
+        <h1>MOPETIERS OFFICIAL 2026</h1>
+
+        <div class="tier-row">
+            <div class="tier-label bg-aaas">
+                <div class="tier-name">AAAS</div>
+                <div class="tier-desc">GOAT</div>
+            </div>
+            <div class="tier-content" id="tier-aaas"></div>
+        </div>
+
+        <div class="tier-row">
+            <div class="tier-label bg-s">
+                <div class="tier-name">S</div>
+                <div class="tier-desc">Top Player</div>
+            </div>
+            <div class="tier-content" id="tier-s"></div>
+        </div>
+
+        <div class="tier-row">
+            <div class="tier-label bg-a">
+                <div class="tier-name">A</div>
+                <div class="tier-desc">Pro</div>
+            </div>
+            <div class="tier-content divided" id="tier-a"></div>
+        </div>
+
+        <div class="tier-row">
+            <div class="tier-label bg-b">
+                <div class="tier-name">B</div>
+                <div class="tier-desc">Semi Pro</div>
+            </div>
+            <div class="tier-content divided" id="tier-b"></div>
+        </div>
+
+        <div class="tier-row">
+            <div class="tier-label bg-c">
+                <div class="tier-name">C</div>
+                <div class="tier-desc">Above Avg</div>
+            </div>
+            <div class="tier-content divided" id="tier-c"></div>
+        </div>
+
+        <div class="tier-row">
+            <div class="tier-label bg-d">
+                <div class="tier-name">D</div>
+                <div class="tier-desc">Average</div>
+            </div>
+            <div class="tier-content" id="tier-d"></div>
+        </div>
+    </div>
+
+    <div id="hall-of-fame" class="hof-section tier-row"> <!-- Added tier-row class so it animates too -->
+        <h2>Hall of Fame</h2>
+        <p>Nothing here for now. Contact <strong>@omriex.lol</strong> to be added here.</p>
+    </div>
+</div>
+
+<!-- Back to top button -->
+<button class="back-to-top" id="btt-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+    // 1. Core Functions
+    function createPlayerElement(name) {
+        return `
+            <div class="player">
+                <span class="p-name">${name}</span>
+            </div>
+        `;
+    }
+
+    function renderTier(tierId, data) {
+        const container = document.getElementById(`tier-${tierId}`);
+        if (!container) return;
+        
+        if (Array.isArray(data)) {
+            container.innerHTML = data.map(createPlayerElement).join("");
+        } else {
+            let html = "";
+            for (const [subTier, players] of Object.entries(data)) {
+                html += `
+                    <div class="sub-tier">
+                        <div class="sub-tier-label">${subTier}</div>
+                        ${players.map(createPlayerElement).join("")}
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+        }
+    }
+
+    // 2. FETCH DATA FROM OUR JSON "API"
+    fetch('./data.json')
+        .then(response => {
+            if (!response.ok) throw new Error("Network response was not ok");
+            return response.json(); // Translate the file into Javascript
+        })
+        .then(playersData => {
+            // Data successfully loaded! Now build the tiers.
+            renderTier("aaas", playersData.aaas);
+            renderTier("s", playersData.s);
+            renderTier("a", playersData.a);
+            renderTier("b", playersData.b);
+            renderTier("c", playersData.c);
+            renderTier("d", playersData.d);
+        })
+        .catch(error => {
+            console.error("Error loading players:", error);
+            document.getElementById('tier-aaas').innerHTML = `<p style="color:red; padding:10px;">Error loading player database.</p>`;
+        });
+
+    // 3. Search Functionality
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        document.querySelectorAll('.player').forEach(player => {
+            const name = player.querySelector('.p-name').textContent.toLowerCase();
+            if (!term) {
+                player.classList.remove('dimmed', 'highlight');
+            } else if (name.includes(term)) {
+                player.classList.remove('dimmed');
+                player.classList.add('highlight');
+            } else {
+                player.classList.remove('highlight');
+                player.classList.add('dimmed');
+            }
+        });
+    });
+
+    // 4. Export Logic with Loading State
+    document.getElementById('export-btn').addEventListener('click', function() {
+        const btn = this;
+        const originalContent = btn.innerHTML;
+        
+        btn.innerHTML = `<svg class="spinner" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> Exporting...`;
+        btn.disabled = true;
+        
+        document.body.classList.add('exporting');
+        const target = document.getElementById('tier-container');
+        
+        setTimeout(() => {
+            html2canvas(target, { backgroundColor: '#050505', scale: 4, useCORS: true }).then(canvas => {
+                document.body.classList.remove('exporting');
+                const link = document.createElement('a');
+                link.download = 'Mopetiers_2026.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }).catch(() => {
+                document.body.classList.remove('exporting');
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            });
+        }, 100); 
+    });
+
+    // 5. Mobile Menu & Back to Top Logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    mobileMenuBtn.addEventListener('click', () => navMenu.classList.toggle('active'));
+
+    const bttBtn = document.getElementById('btt-btn');
+    window.addEventListener('scroll', () => {
+        bttBtn.classList.toggle('show', window.scrollY > 300);
+    });
+    bttBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // 6. Scroll Animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.tier-row').forEach(row => observer.observe(row));
+</script>
+</body>
+</html>
