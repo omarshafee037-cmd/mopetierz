@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Optimization & Open Graph -->
-    <title>Mopetiers Official 2026</title>
+    <title>Mopetiers Official</title>
     <meta name="description" content="The official Mopetiers player tier list for 2026.">
     <meta property="og:title" content="Mopetiers Official">
     <meta property="og:description" content="The official Mopetiers 2026 Player Tier List">
@@ -13,7 +12,6 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#eab308">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://images2.imgbox.com/fa/30/fXB0WKMF_o.png">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -57,7 +55,6 @@
             min-height: 100vh;
         }
 
-        /* --- Header Styles --- */
         .top-bar {
             position: sticky;
             top: 0;
@@ -81,7 +78,6 @@
             gap: 12px;
         }
 
-        /* Nav items container for collapse */
         .nav-collapsible {
             display: flex;
             align-items: center;
@@ -104,7 +100,6 @@
             cursor: pointer;
         }
 
-        /* --- Button & Input Styles --- */
         .btn {
             background: #111;
             color: #fff;
@@ -186,7 +181,6 @@
             fill: currentColor;
         }
 
-        /* --- Container & Layout --- */
         .container {
             width: 100%;
             max-width: 1200px;
@@ -211,13 +205,11 @@
             background-clip: text;
         }
 
-        /* --- Tier Row & Animations --- */
         .tier-row {
             display: flex;
             margin-bottom: 12px;
             gap: 12px;
             min-height: 80px;
-            /* Scroll Animation Defaults */
             opacity: 0;
             transform: scale(0.95) translateY(20px);
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
@@ -298,7 +290,6 @@
             margin-bottom: 4px;
         }
 
-        /* --- Player Styles --- */
         .player {
             background-color: #111111;
             border: 1px solid #2a2a2a;
@@ -335,7 +326,6 @@
             z-index: 5;
         }
 
-        /* --- Hall of Fame --- */
         .hof-section {
             margin-top: 60px;
             margin-bottom: 40px;
@@ -365,7 +355,6 @@
             color: #fff;
         }
 
-        /* --- Back to Top Button --- */
         .back-to-top {
             position: fixed;
             bottom: 30px;
@@ -400,7 +389,6 @@
             transform: translateY(-5px) scale(1.05);
         }
 
-        /* --- Utilities --- */
         .spinner {
             animation: spin 1s linear infinite;
         }
@@ -416,13 +404,11 @@
         body.exporting .sub-tier {
             border-color: #222 !important;
         }
-        /* Lock animation state during export so it doesn't break image */
         body.exporting .tier-row {
             opacity: 1 !important;
             transform: none !important;
         }
 
-        /* --- Responsive Design --- */
         @media (max-width: 768px) {
             .top-bar {
                 padding: 15px;
@@ -434,14 +420,14 @@
                 display: block;
             }
             .nav-collapsible {
-                display: none; /* Collapsed by default */
+                display: none;
                 flex-direction: column;
                 width: 100%;
                 margin-top: 15px;
                 gap: 15px;
             }
             .nav-collapsible.active {
-                display: flex; /* Expanded state */
+                display: flex;
             }
             .top-bar-center, .top-bar-right {
                 width: 100%;
@@ -552,7 +538,6 @@
     </div>
 </div>
 
-<!-- Back to top button -->
 <button class="back-to-top" id="btt-btn">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
