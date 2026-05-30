@@ -83,10 +83,19 @@
             align-items: center;
             gap: 12px;
             flex-grow: 1;
-            justify-content: space-between;
+            justify-content: flex-end;
         }
 
-        .top-bar-center, .top-bar-right {
+        .top-bar-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-bar-right {
             display: flex;
             align-items: center;
             gap: 12px;
@@ -133,9 +142,10 @@
             border-color: #ca8a04;
         }
 
-.btn.btn-yellow:hover:not(:disabled) {
+        .btn.btn-yellow:hover:not(:disabled) {
             background: #facc15;
             border-color: #eab308;
+            color: #000;
         }
 
         .search-bar {
@@ -510,6 +520,10 @@
                 justify-content: center;
                 flex-direction: column;
             }
+            .top-bar-center {
+                position: static;
+                transform: none;
+            }
             .search-bar {
                 width: 100%;
             }
@@ -537,7 +551,7 @@
     </div>
     
     <div class="nav-collapsible" id="nav-menu">
-<div class="top-bar-center">
+        <div class="top-bar-center">
             <button id="export-btn" class="btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 Export
