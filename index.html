@@ -232,14 +232,49 @@
 
         .tier-label {
             width: 110px;
-            border-radius: 8px;
+            perspective: 1000px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tier-inner {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .tier-label:hover .tier-inner {
+            transform: rotateY(180deg);
+        }
+
+        .tier-front, .tier-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 10px;
-            text-align: center;
-            flex-shrink: 0;
+            border-radius: 8px;
+            left: 0;
+            top: 0;
+        }
+
+        .tier-back {
+            transform: rotateY(180deg);
+        }
+
+        .tier-back-text {
+            font-size: 0.75rem;
+            font-weight: 800;
+            line-height: 1.4;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
         }
 
         .tier-name {
@@ -247,6 +282,19 @@
             font-weight: 900;
             margin-bottom: 4px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .crown {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            fill: #fbbf24;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+            top: -16px;
+            right: -10px;
+            transform: rotate(20deg);
+            z-index: 10;
         }
 
         .tier-desc {
@@ -301,6 +349,7 @@
         }
 
         .player {
+            position: relative;
             background-color: #111111;
             border: 1px solid #2a2a2a;
             border-radius: 6px;
@@ -334,6 +383,25 @@
             box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
             transform: scale(1.05);
             z-index: 5;
+        }
+
+        .shine-effect {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            clip-path: polygon(50% 0%, 55% 45%, 100% 50%, 55% 55%, 50% 100%, 45% 55%, 0% 50%, 45% 45%);
+            animation: shine-anim 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            pointer-events: none;
+            z-index: 20;
+            filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.9));
+        }
+
+        @keyframes shine-anim {
+            0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translate(-50%, -50%) scale(2.2) rotate(135deg); opacity: 0; }
         }
 
         .hof-section {
@@ -494,6 +562,13 @@
             opacity: 1 !important;
             transform: none !important;
         }
+        body.exporting .tier-inner {
+            transition: none !important;
+            transform: none !important;
+        }
+        body.exporting .shine-effect {
+            display: none !important;
+        }
 
         @media (max-width: 768px) {
             .top-bar {
@@ -574,49 +649,94 @@
         <h1>MOPETIERS OFFICIAL 2026</h1>
 
         <div class="tier-row">
-            <div class="tier-label bg-aaas">
-                <div class="tier-name">AAAS</div>
-                <div class="tier-desc">GOAT</div>
+            <div class="tier-label">
+                <div class="tier-inner">
+                    <div class="tier-front bg-aaas">
+                        <div class="tier-name">
+                            <svg class="crown" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z"/></svg>
+                            AAAS
+                        </div>
+                        <div class="tier-desc">GOAT</div>
+                    </div>
+                    <div class="tier-back bg-aaas">
+                        <div class="tier-back-text">Untouchable kings</div>
+                    </div>
+                </div>
             </div>
             <div class="tier-content" id="tier-aaas"></div>
         </div>
 
         <div class="tier-row">
-            <div class="tier-label bg-s">
-                <div class="tier-name">S</div>
-                <div class="tier-desc">Top Player</div>
+            <div class="tier-label">
+                <div class="tier-inner">
+                    <div class="tier-front bg-s">
+                        <div class="tier-name">S</div>
+                        <div class="tier-desc">Top Player</div>
+                    </div>
+                    <div class="tier-back bg-s">
+                        <div class="tier-back-text">Top tier competitive players</div>
+                    </div>
+                </div>
             </div>
             <div class="tier-content" id="tier-s"></div>
         </div>
 
         <div class="tier-row">
-            <div class="tier-label bg-a">
-                <div class="tier-name">A</div>
-                <div class="tier-desc">Pro</div>
+            <div class="tier-label">
+                <div class="tier-inner">
+                    <div class="tier-front bg-a">
+                        <div class="tier-name">A</div>
+                        <div class="tier-desc">Pro</div>
+                    </div>
+                    <div class="tier-back bg-a">
+                        <div class="tier-back-text">Highly skilled professionals</div>
+                    </div>
+                </div>
             </div>
             <div class="tier-content divided" id="tier-a"></div>
         </div>
 
         <div class="tier-row">
-            <div class="tier-label bg-b">
-                <div class="tier-name">B</div>
-                <div class="tier-desc">Semi Pro</div>
+            <div class="tier-label">
+                <div class="tier-inner">
+                    <div class="tier-front bg-b">
+                        <div class="tier-name">B</div>
+                        <div class="tier-desc">Semi Pro</div>
+                    </div>
+                    <div class="tier-back bg-b">
+                        <div class="tier-back-text">Great competitive potential</div>
+                    </div>
+                </div>
             </div>
             <div class="tier-content divided" id="tier-b"></div>
         </div>
 
         <div class="tier-row">
-            <div class="tier-label bg-c">
-                <div class="tier-name">C</div>
-                <div class="tier-desc">Above Avg</div>
+            <div class="tier-label">
+                <div class="tier-inner">
+                    <div class="tier-front bg-c">
+                        <div class="tier-name">C</div>
+                        <div class="tier-desc">Above Avg</div>
+                    </div>
+                    <div class="tier-back bg-c">
+                        <div class="tier-back-text">Above average players</div>
+                    </div>
+                </div>
             </div>
             <div class="tier-content divided" id="tier-c"></div>
         </div>
 
         <div class="tier-row">
-            <div class="tier-label bg-d">
-                <div class="tier-name">D</div>
-                <div class="tier-desc">Average</div>
+            <div class="tier-label">
+                <div class="tier-inner">
+                    <div class="tier-front bg-d">
+                        <div class="tier-name">D</div>
+                        <div class="tier-desc">Average</div>
+                    </div>
+                    <div class="tier-back bg-d">
+                        <div class="tier-back-text">Beginner 1v1ers</div>
+                    </div>
+                </div>
             </div>
             <div class="tier-content" id="tier-d"></div>
         </div>
@@ -838,6 +958,25 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.tier-row').forEach(row => observer.observe(row));
+
+    function triggerSpikedShine() {
+        const aaasTier = document.getElementById('tier-aaas');
+        if (!aaasTier) return;
+        const players = aaasTier.querySelectorAll('.player');
+        if (players.length > 0) {
+            const randomPlayer = players[Math.floor(Math.random() * players.length)];
+            const shine = document.createElement('div');
+            shine.className = 'shine-effect';
+            shine.style.top = `${Math.random() * 60 + 20}%`;
+            shine.style.left = `${Math.random() * 80 + 10}%`;
+            randomPlayer.appendChild(shine);
+            setTimeout(() => {
+                if (shine.parentNode) shine.parentNode.removeChild(shine);
+            }, 3000);
+        }
+        setTimeout(triggerSpikedShine, Math.random() * 5000 + 5000);
+    }
+    setTimeout(triggerSpikedShine, 2000);
 </script>
 </body>
 </html>
